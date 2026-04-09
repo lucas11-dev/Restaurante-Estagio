@@ -45,3 +45,9 @@ Beckend
 Infraestrutura
 
 - XAMPP => Servidor Web
+
+## Lista de tarefas
+
+- Lucas Trabalha a tela de boas-vindas e a tela de login (validações e autenticações);
+- António Buengue Trabalha o admin (Todas as funcionalidades do admin devem estar funcionais);
+- Antonio Bucula Trabalha  o cliente (Todas as funcionalidades do cliente devem estar funcionais);
