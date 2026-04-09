@@ -45,3 +45,7 @@ Beckend
 
 - PHP 8.4
 - MySQL 8.0
+
+Infraestrutura
+
+- XAMPP => Servidor Web
