@@ -28,10 +28,6 @@ Sistema de eCommerce para gestão de pedidos em restaurantes. A forma mais simpl
 3. Importe `database.sql` no phpMyAdmin.
 4. Acesse `http://localhost/RestauranteEstagio`.
 
-## Usuários de Teste
-
-- Admin: admin@restaurante.com / admin (senha: admin, mas altere para hash seguro)
-- Registre clientes e garçons conforme necessário.
 
 ## Stack
 
