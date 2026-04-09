@@ -1,6 +1,6 @@
 # Restaurante Conect
 
-Sistema de eCommerce para gestão de pedidos em restaurantes, conforme especificação do documento.
+Sistema de eCommerce para gestão de pedidos em restaurantes. A forma mais simples de chegar ao seu prato preferido!
 
 ## Funcionalidades
 
