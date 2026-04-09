@@ -1,0 +1,40 @@
+# Restaurante Conect
+
+Sistema de eCommerce para gestão de pedidos em restaurantes, conforme especificação do documento.
+
+## Funcionalidades
+
+- Cadastro e autenticação de usuários (cliente, garçon, admin/gerente)
+- Visualização de cardápio por clientes
+- Carrinho de compras e finalização de pedidos
+- Gestão de pedidos por garçons
+- Administração do cardápio e relatórios
+
+## Estrutura do Projeto
+
+- `css/`: Estilos CSS
+- `js/`: Scripts JavaScript
+- `images/`: Imagens
+- `includes/`: Arquivos de configuração e funções
+- `cliente/`: Páginas para clientes
+- `garcon/`: Páginas para garçons
+- `admin/`: Páginas administrativas
+- `api/`: APIs (futuro)
+
+## Instalação
+
+1. Instale o XAMPP e inicie Apache e MySQL.
+2. Copie o projeto para `c:\xampp\htdocs\RestauranteEstagio`.
+3. Importe `database.sql` no phpMyAdmin.
+4. Acesse `http://localhost/RestauranteEstagio`.
+
+## Usuários de Teste
+
+- Admin: admin@restaurante.com / admin (senha: admin, mas altere para hash seguro)
+- Registre clientes e garçons conforme necessário.
+
+## Notas
+
+- MVP básico implementado.
+- Pagamentos simulados.
+- Notificações básicas.
