@@ -37,5 +37,11 @@ Sistema de eCommerce para gestão de pedidos em restaurantes. A forma mais simpl
 
 Frontend
 
-- HTML 5
+- HTML 5 => criar e estruturar o conteúdo das páginas
 - Tailwind css + Bootstrap 5 => Estilização
+- JavaScript
+
+Beckend
+
+- PHP 8.4
+- MySQL 8.0
