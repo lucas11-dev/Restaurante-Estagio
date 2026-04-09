@@ -33,8 +33,9 @@ Sistema de eCommerce para gestão de pedidos em restaurantes. A forma mais simpl
 - Admin: admin@restaurante.com / admin (senha: admin, mas altere para hash seguro)
 - Registre clientes e garçons conforme necessário.
 
-## Notas
+## Stack
 
-- MVP básico implementado.
-- Pagamentos simulados.
-- Notificações básicas.
+Frontend
+
+- HTML 5
+- Tailwind css + Bootstrap 5 => Estilização
