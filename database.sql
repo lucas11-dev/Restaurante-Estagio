@@ -4,7 +4,7 @@ USE restaurante_conect;
 
 -- Tabela utilizador
 CREATE TABLE utilizador (
-  id               INT PRIMARY KEY AUTO_INCREMENT NOT NULL UNIQUE,
+  id               INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   nome             VARCHAR(120) NOT NULL UNIQUE,
   email            VARCHAR(150) NOT NULL UNIQUE,
   senha            VARCHAR(255) NOT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE utilizador (
 
 -- Tabela cliente
 CREATE TABLE cliente (
-  id               INT PRIMARY KEY AUTO_INCREMENT NOT NULL UNIQUE,
+  id               INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   utilizador_id    INT NOT NULL UNIQUE,
   telefone         VARCHAR(20),
   endereco         TEXT,
@@ -26,7 +26,7 @@ CREATE TABLE cliente (
 
 -- Tabela cardapio
 CREATE TABLE cardapio (
-  id               INT PRIMARY KEY AUTO_INCREMENT NOT NULL UNIQUE,
+  id               INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   nome             VARCHAR(100) NOT NULL,
   ativo            BOOLEAN NOT NULL DEFAULT TRUE,
   criado_por       INT NOT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE cardapio (
 
 -- Tabela categoria
 CREATE TABLE categoria (
-  id               INT PRIMARY KEY AUTO_INCREMENT NOT NULL UNIQUE,
+  id               INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   cardapio_id      INT NOT NULL,
   nome             VARCHAR(80) NOT NULL,
   ordem            SMALLINT NOT NULL DEFAULT 0,
@@ -46,7 +46,7 @@ CREATE TABLE categoria (
 
 -- Tabela item_cardapio
 CREATE TABLE item_cardapio (
-  id               INT PRIMARY KEY AUTO_INCREMENT NOT NULL UNIQUE,
+  id               INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   categoria_id     INT NOT NULL,
   nome             VARCHAR(120) NOT NULL,
   descricao        TEXT,
@@ -60,7 +60,7 @@ CREATE TABLE item_cardapio (
 
 -- Tabela pedido
 CREATE TABLE pedido (
-  id               INT PRIMARY KEY AUTO_INCREMENT NOT NULL UNIQUE,
+  id               INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   cliente_id       INT NOT NULL,
   status           ENUM('pendente','em_preparacao','pronto','entregue','cancelado') NOT NULL DEFAULT 'pendente',
   tipo             ENUM('mesa','takeaway') NOT NULL DEFAULT 'mesa',
@@ -73,7 +73,7 @@ CREATE TABLE pedido (
 
 -- Tabela item_pedido
 CREATE TABLE item_pedido (
-  id               INT PRIMARY KEY AUTO_INCREMENT NOT NULL UNIQUE,
+  id               INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   pedido_id        INT NOT NULL,
   item_cardapio_id INT NOT NULL,
   quantidade       SMALLINT NOT NULL CHECK (quantidade > 0),
@@ -85,7 +85,7 @@ CREATE TABLE item_pedido (
 
 -- Tabela pagamento
 CREATE TABLE pagamento (
-  id               INT PRIMARY KEY AUTO_INCREMENT NOT NULL UNIQUE,
+  id               INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   pedido_id        INT NOT NULL UNIQUE,
   metodo           ENUM('cartao','multicaixa','dinheiro','simulacao') NOT NULL,
   status           ENUM('pendente','aprovado','recusado','estornado') NOT NULL DEFAULT 'pendente',
@@ -97,7 +97,7 @@ CREATE TABLE pagamento (
 
 -- Tabela notificacao
 CREATE TABLE notificacao (
-  id               INT PRIMARY KEY AUTO_INCREMENT NOT NULL UNIQUE,
+  id               INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   utilizador_id    INT NOT NULL,
   pedido_id        INT NULL,
   tipo             VARCHAR(30) NOT NULL,
@@ -109,17 +109,17 @@ CREATE TABLE notificacao (
 );
 
 -- Inserir usuário admin padrão
-INSERT INTO utilizador (nome, email, senha, tipo) VALUES ('Admin', 'admin@restaurante.com', '$2y$10$examplehashedpassword', 'admin');
+--INSERT INTO utilizador (nome, email, senha, tipo) VALUES ('Admin', 'admin@restaurante.com', '$2y$10$examplehashedpassword', 'admin');
 
 -- Inserir cardápio padrão
-INSERT INTO cardapio (nome, criado_por) VALUES ('Cardápio Principal', 1);
+--INSERT INTO cardapio (nome, criado_por) VALUES ('Cardápio Principal', 1);
 
 -- Inserir categorias
-INSERT INTO categoria (cardapio_id, nome, ordem) VALUES (1, 'Entradas', 1), (1, 'Pratos Principais', 2), (1, 'Sobremesas', 3), (1, 'Bebidas', 4);
+--INSERT INTO categoria (cardapio_id, nome, ordem) VALUES (1, 'Entradas', 1), (1, 'Pratos Principais', 2), (1, 'Sobremesas', 3), (1, 'Bebidas', 4);
 
 -- Inserir itens de exemplo
-INSERT INTO item_cardapio (categoria_id, nome, descricao, preco) VALUES
-(1, 'Salada Caesar', 'Alface, croutons, parmesão, molho Caesar', 15.00),
-(2, 'Pizza Margherita', 'Molho de tomate, queijo, manjericão', 25.00),
-(3, 'Tiramisu', 'Sobremesa italiana com café', 12.00),
-(4, 'Refrigerante', 'Coca-Cola 350ml', 5.00);
+--INSERT INTO item_cardapio (categoria_id, nome, descricao, preco) VALUES
+--(1, 'Salada Caesar', 'Alface, croutons, parmesão, molho Caesar', 15.00),
+--(2, 'Pizza Margherita', 'Molho de tomate, queijo, manjericão', 25.00),
+--(3, 'Tiramisu', 'Sobremesa italiana com café', 12.00),
+--(4, 'Refrigerante', 'Coca-Cola 350ml', 5.00);
