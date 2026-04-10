@@ -1,7 +1,5 @@
-// JavaScript básico
-console.log("Restaurante Conect carregado");
-
-// Função para confirmações, se necessário
-function confirmAction(message) {
-    return confirm(message);
-}
+$(document).ready(function(){
+    $('#mobile_btn').on('click', function(){
+        $('#mobile_menu').toggleClass('active');
+    });
+});
