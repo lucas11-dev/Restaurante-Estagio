@@ -27,7 +27,7 @@ function redirecionarPorTipo($tipo) {
             header('Location: painel_gerente.php');
             break;
         default:
-            header('Location: cliente/index.php');
+            header('Location: ./cliente/index.php');
             break;
     }
     exit;
