@@ -924,7 +924,7 @@ $data_atual = date('d/m/Y');
                 <li><a href="#equipe" onclick="closeMenu()">Equipe</a></li>
                 <li><a href="#depoimentos" onclick="closeMenu()">Depoimentos</a></li>
                 <li><a href="login.php">Entrar</a></li>
-                <li><a href="register.php" style="color: #667eea;">Cadastrar</a></li>
+              <!--  <li><a href="register.php" style="color: #667eea;">Cadastrar</a></li>  -->
             </ul>
         </div>
     </nav>
@@ -952,7 +952,7 @@ $data_atual = date('d/m/Y');
             </div>
             <div class="info-item">
                 <i class="fas fa-map-marker-alt"></i>
-                <span>Luanda, Angola</span>
+                <span>Gamek, Luanda, Angola</span>
             </div>
             <div class="info-item">
                 <i class="far fa-clock"></i>
