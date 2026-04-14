@@ -3,7 +3,7 @@
 session_start();
 
 // Incluir configuração do banco
-require_once 'config/database.php';
+require_once 'includes/database.php';
 
 $erros = [];
 $sucesso = false;
@@ -11,7 +11,7 @@ $dados = $_POST;
 
 // Se já estiver logado, redireciona
 if (isset($_SESSION['utilizador_id'])) {
-    header('Location: dashboard.php');
+    header('Location: cliente/index.php');
     exit;
 }
 
@@ -113,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $sucesso = true;
                 
                 // Redirecionar
-                header('Location: dashboard.php');
+                header('Location: cliente/index.php');
                 exit;
                 
             }
