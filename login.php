@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 // login.php
 session_start();
 
@@ -9,7 +9,7 @@ $password = '';
 
 $erro = '';
 
-// Se já estiver logado, redireciona baseado no tipo
+// Se jÃ¡ estiver logado, redireciona baseado no tipo
 if (isset($_SESSION['utilizador_id'])) {
     redirecionarPorTipo($_SESSION['utilizador_tipo']);
     exit;
@@ -18,13 +18,11 @@ if (isset($_SESSION['utilizador_id'])) {
 function redirecionarPorTipo($tipo) {
     switch($tipo) {
         case 'admin':
-            header('Location: painel_admin.php');
+        case 'gerente':
+            header('Location: admin/index.php');
             break;
         case 'garcom':
-            header('Location: painel_garcom.php');
-            break;
-        case 'gerente':
-            header('Location: painel_gerente.php');
+            header('Location: garcon/index.php');
             break;
         default:
             header('Location: ./cliente/index.php');
@@ -44,14 +42,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             
-            $query = "SELECT id, nome, email, senha, tipo, status FROM utilizador WHERE email = :email";
+            $query = "SELECT id, nome, email, senha, tipo, ativo FROM utilizador WHERE email = :email";
             $stmt = $pdo->prepare($query);
             $stmt->execute([':email' => $email]);
             $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
             
             if ($usuario && $usuario['senha'] === $senha) {
                 if ($usuario['status'] !== 'ativo') {
-                    $erro = 'Sua conta está inativa. Contate o administrador.';
+                    $erro = 'Sua conta estÃ¡ inativa. Contate o administrador.';
                 } else {
                     $_SESSION['utilizador_id'] = $usuario['id'];
                     $_SESSION['utilizador_nome'] = $usuario['nome'];
@@ -151,13 +149,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="container">
         <div class="header">
             <h1>Restaurante Conect</h1>
-            <p>Faça login para continuar</p>
+            <p>FaÃ§a login para continuar</p>
         </div>
         
         <div class="form-container">
             
             <?php if ($erro): ?>
-                <div class="error-message">❌ <?php echo htmlspecialchars($erro); ?></div>
+                <div class="error-message">âŒ <?php echo htmlspecialchars($erro); ?></div>
             <?php endif; ?>
             
             <form method="POST" action="">
@@ -175,9 +173,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </form>
             
             <div class="register-link">
-                Não tem uma conta? <a href="register.php">Cadastre-se</a>
+                NÃ£o tem uma conta? <a href="register.php">Cadastre-se</a>
             </div>
         </div>
     </div>
 </body>
 </html>
+
+

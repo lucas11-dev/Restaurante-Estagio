@@ -1,24 +1,24 @@
-<?php
+﻿<?php
 // register.php
 session_start();
 
-// Incluir configuração do banco
+// Incluir configuraÃ§Ã£o do banco
 require_once 'includes/database.php';
 
 $erros = [];
 $sucesso = false;
 $dados = $_POST;
 
-// Se já estiver logado, redireciona
+// Se jÃ¡ estiver logado, redireciona
 if (isset($_SESSION['utilizador_id'])) {
     header('Location: cliente/index.php');
     exit;
 }
 
-// Processar formulário
+// Processar formulÃ¡rio
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
-    // VALIDAÇÕES
+    // VALIDAÃ‡Ã•ES
     $nome = trim($_POST['nome'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $senha = $_POST['senha'] ?? '';
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     // Validar nome
     if (empty($nome)) {
-        $erros['nome'] = 'Nome é obrigatório';
+        $erros['nome'] = 'Nome Ã© obrigatÃ³rio';
     } elseif (strlen($nome) < 3) {
         $erros['nome'] = 'Nome deve ter pelo menos 3 caracteres';
     } elseif (strlen($nome) > 120) {
@@ -36,21 +36,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     // Validar email
     if (empty($email)) {
-        $erros['email'] = 'Email é obrigatório';
+        $erros['email'] = 'Email Ã© obrigatÃ³rio';
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $erros['email'] = 'Email inválido';
+        $erros['email'] = 'Email invÃ¡lido';
     }
     
     // Validar senha
     if (empty($senha)) {
-        $erros['senha'] = 'Senha é obrigatória';
+        $erros['senha'] = 'Senha Ã© obrigatÃ³ria';
     } elseif (strlen($senha) < 6) {
         $erros['senha'] = 'Senha deve ter pelo menos 6 caracteres';
     }
     
-    // Validar confirmação de senha
+    // Validar confirmaÃ§Ã£o de senha
     if ($senha !== $confirmar_senha) {
-        $erros['confirmar_senha'] = 'As senhas não coincidem';
+        $erros['confirmar_senha'] = 'As senhas nÃ£o coincidem';
     }
     
     // Validar telefone (opcional)
@@ -61,29 +61,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } elseif (strlen($apenas_numeros) === 12 && substr($apenas_numeros, 0, 3) === '244') {
             $telefone = '+' . $apenas_numeros;
         } else {
-            $erros['telefone'] = 'Digite 9 números (ex: 923456789)';
+            $erros['telefone'] = 'Digite 9 nÃºmeros (ex: 923456789)';
         }
     }
     
-    // Se não houver erros, prosseguir
+    // Se nÃ£o houver erros, prosseguir
     if (empty($erros)) {
         try {
             $database = new Database();
             $db = $database->getConnection();
             
-            // Verificar se email já existe
+            // Verificar se email jÃ¡ existe
             $check = $db->prepare("SELECT id FROM utilizador WHERE email = :email");
             $check->execute([':email' => $email]);
             
             if ($check->fetch()) {
-                $erros['email'] = 'Este email já está cadastrado';
+                $erros['email'] = 'Este email jÃ¡ estÃ¡ cadastrado';
             } else {
-                // Iniciar transação
+                // Iniciar transaÃ§Ã£o
                 $db->beginTransaction();
                 
                 // Inserir na tabela utilizador
-                $sql = "INSERT INTO utilizador (nome, email, senha, tipo, status) 
-                        VALUES (:nome, :email, :senha, 'cliente', 'ativo')";
+                $sql = "INSERT INTO utilizador (nome, email, senha, tipo, ativo) 
+                        VALUES (:nome, :email, :senha, 'cliente', 1)";
                 $stmt = $db->prepare($sql);
                 $stmt->execute([
                     ':nome' => $nome,
@@ -104,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 
                 $db->commit();
                 
-                // Criar sessão
+                // Criar sessÃ£o
                 $_SESSION['utilizador_id'] = $utilizador_id;
                 $_SESSION['utilizador_nome'] = $nome;
                 $_SESSION['utilizador_email'] = $email;
@@ -224,16 +224,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="container">
         <div class="header">
             <h1>Restaurante Conect</h1>
-            <p>Crie sua conta e faça seu pedido</p>
+            <p>Crie sua conta e faÃ§a seu pedido</p>
         </div>
         
         <div class="form-container">
             <?php if (isset($erros['geral'])): ?>
-                <div class="error-general">❌ <?php echo htmlspecialchars($erros['geral']); ?></div>
+                <div class="error-general">âŒ <?php echo htmlspecialchars($erros['geral']); ?></div>
             <?php endif; ?>
             
             <?php if ($sucesso): ?>
-                <div class="success-message">✅ Cadastro realizado! Redirecionando...</div>
+                <div class="success-message">âœ… Cadastro realizado! Redirecionando...</div>
             <?php endif; ?>
             
             <form method="POST" action="" id="registerForm">
@@ -268,7 +268,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <input type="tel" id="telefone" name="telefone" class="telefone-input" 
                              maxlength="9" value="<?php echo htmlspecialchars($dados['telefone'] ?? ''); ?>">
                     </div>
-                    <!-- <small>Digite apenas os 9 números</small> -->
+                    <!-- <small>Digite apenas os 9 nÃºmeros</small> -->
                     <span class="error-message" id="telefone-error"><?php echo $erros['telefone'] ?? ''; ?></span>
                 </div>
                 
@@ -276,13 +276,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </form>
             
             <div class="login-link">
-                Já tem uma conta? <a href="login.php">Faça login</a>
+                JÃ¡ tem uma conta? <a href="login.php">FaÃ§a login</a>
             </div>
         </div>
     </div>
     
     <script>
-        // Validação em tempo real
+        // ValidaÃ§Ã£o em tempo real
         const form = document.getElementById('registerForm');
         
         function validarNome() {
@@ -293,7 +293,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 nome.classList.add('error');
                 return false;
             } else if (nome.value.trim().length === 0) {
-                error.textContent = 'Nome é obrigatório';
+                error.textContent = 'Nome Ã© obrigatÃ³rio';
                 nome.classList.add('error');
                 return false;
             } else {
@@ -309,11 +309,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             const error = document.getElementById('email-error');
             const regex = /^[^\s@]+@([^\s@]+\.)+[^\s@]+$/;
             if (!regex.test(email.value)) {
-                error.textContent = 'Email inválido';
+                error.textContent = 'Email invÃ¡lido';
                 email.classList.add('error');
                 return false;
             } else if (email.value.trim().length === 0) {
-                error.textContent = 'Email é obrigatório';
+                error.textContent = 'Email Ã© obrigatÃ³rio';
                 email.classList.add('error');
                 return false;
             } else {
@@ -332,7 +332,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 senha.classList.add('error');
                 return false;
             } else if (senha.value.length === 0) {
-                error.textContent = 'Senha é obrigatória';
+                error.textContent = 'Senha Ã© obrigatÃ³ria';
                 senha.classList.add('error');
                 return false;
             } else {
@@ -349,7 +349,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             const confirmar = document.getElementById('confirmar_senha');
             const error = document.getElementById('confirmar-error');
             if (confirmar.value !== senha) {
-                error.textContent = 'As senhas não coincidem';
+                error.textContent = 'As senhas nÃ£o coincidem';
                 confirmar.classList.add('error');
                 return false;
             } else if (confirmar.value.length === 0) {
@@ -381,7 +381,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 telefone.classList.add('success');
                 return true;
             } else {
-                error.textContent = 'Digite 9 números';
+                error.textContent = 'Digite 9 nÃºmeros';
                 telefone.classList.add('error');
                 return false;
             }
