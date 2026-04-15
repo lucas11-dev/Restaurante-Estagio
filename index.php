@@ -71,7 +71,7 @@ $equipe = [
         'linkedin' => '#'
     ],
     [
-        'foto' => '<img src="uploads/equipe/chef2.jpg" alt="António Bucula">',
+        'foto' => '<img src="assets/img/ChatGPT Image 14_04_2026, 22_21_08.png" alt="António Bucula">',
         'nome' => 'António Bucula',
         'cargo' => 'Sous Chef',
         'descricao' => 'Especialista em culinária angolana e portuguesa, cria pratos tradicionais com toque moderno.',
@@ -98,7 +98,7 @@ $data_atual = date('d/m/Y');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta name="theme-color" content="#667eea">
-    <title>Restaurante Conect - Seu restaurante digitalizado e conectado</title>
+    <title>FOODNET - Seu restaurante digitalizado e conectado</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
@@ -908,7 +908,7 @@ $data_atual = date('d/m/Y');
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#" class="logo">RestauranteConect</a>
+            <a href="#" class="logo">FOOD<span>NET</span></a>
             
             <button class="mobile-menu-btn" onclick="toggleMenu()">
                 <i class="fas fa-bars"></i>
@@ -934,7 +934,7 @@ $data_atual = date('d/m/Y');
     <!-- Hero Section -->
     <section class="hero" id="home">
        <!-- <div class="dev">- DEV</div> -->
-        <h1>RestauranteConect</h1>
+        <h1>FOODNET</h1>
         <p>O seu restaurante, digitalizado e conectado.</p>
         <p>Gerencie pedidos, cardápio e pagamentos em tempo real.<br>Da mesa à cozinha, tudo fluindo num único sistema.</p>
         <div class="btn-group">
