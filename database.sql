@@ -123,3 +123,11 @@ CREATE TABLE notificacao (
 --(2, 'Pizza Margherita', 'Molho de tomate, queijo, manjericão', 25.00),
 --(3, 'Tiramisu', 'Sobremesa italiana com café', 12.00),
 --(4, 'Refrigerante', 'Coca-Cola 350ml', 5.00);
+
+INSERT INTO utilizador (nome, email, senha, tipo, status) VALUES 
+('Administrador', 'admin@restaurante.com', 'admin123', 'admin', 'ativo')
+ON DUPLICATE KEY UPDATE 
+    nome = 'Administrador',
+    senha = 'admin123',
+    tipo = 'admin',
+    status = 'ativo';
