@@ -935,7 +935,7 @@ $data_atual = date('d/m/Y');
     <section class="hero" id="home">
        <!-- <div class="dev">- DEV</div> -->
         <h1>FOODNET</h1>
-        <p>O seu restaurante, digitalizado e conectado.</p>
+        <p>O seu FOOD, digitalizado e conectado.</p>
         <p>Gerencie pedidos, cardápio e pagamentos em tempo real.<br>Da mesa à cozinha, tudo fluindo num único sistema.</p>
         <div class="btn-group">
             <a href="register.php" class="btn btn-primary">Começar agora →</a>
@@ -1093,8 +1093,8 @@ $data_atual = date('d/m/Y');
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
-                <h3>RestauranteConect</h3>
-                <p>O seu restaurante, digitalizado e conectado. Da mesa à cozinha, tudo fluindo num único sistema.</p>
+                <h3>FOODNET</h3>
+                <p>O seu FOOD, digitalizado e conectado. Da mesa à cozinha, tudo fluindo num único sistema.</p>
             </div>
             <div class="footer-section">
                 <h3>Contato</h3>
@@ -1109,7 +1109,7 @@ $data_atual = date('d/m/Y');
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Restaurante Conect - Todos os direitos reservados</p>
+            <p>&copy; 2026 FOODNET - Todos os direitos reservados</p>
         </div>
     </footer>
 

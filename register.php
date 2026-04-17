@@ -129,7 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro - Restaurante Conect</title>
+    <title>Cadastro - FOODNET</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -223,7 +223,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div class="container">
         <div class="header">
-            <h1>Restaurante Conect</h1>
+            <h1>FOODNET</h1>
             <p>Crie sua conta e faça seu pedido</p>
         </div>
         

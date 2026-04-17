@@ -9,28 +9,49 @@ $password = '';
 
 $erro = '';
 
-// Se já estiver logado, redireciona baseado no tipo
-if (isset($_SESSION['utilizador_id'])) {
-    redirecionarPorTipo($_SESSION['utilizador_tipo']);
-    exit;
-}
-
 function redirecionarPorTipo($tipo) {
     switch($tipo) {
         case 'admin':
-            header('Location: painel_admin.php');
+            header('Location: admin/index.php');
+            break;
+        case 'gerente':
+            header('Location: admin/index.php');
             break;
         case 'garcom':
             header('Location: painel_garcom.php');
             break;
-        case 'gerente':
-            header('Location: painel_gerente.php');
+        case 'cozinha':
+            header('Location: painel_cozinha.php');
+            break;
+        case 'cliente':
+            header('Location: cliente/index.php');
             break;
         default:
-            header('Location: ./cliente/index.php');
+            header('Location: index.php');
             break;
     }
     exit;
+}
+
+// Se já estiver logado, redireciona (mas verificar se não está na página de login)
+if (isset($_SESSION['utilizador_id']) && isset($_SESSION['utilizador_tipo'])) {
+    // Evitar loop: se já está na página correta, não redirecionar
+    $current_file = basename($_SERVER['PHP_SELF']);
+    $tipo = $_SESSION['utilizador_tipo'];
+    
+    if ($tipo == 'admin' && $current_file == 'login.php') {
+        header('Location: admin/index.php');
+        exit;
+    } elseif ($tipo == 'gerente' && $current_file == 'login.php') {
+        header('Location: admin/index.php');
+        exit;
+    } elseif ($tipo == 'garcom' && $current_file == 'login.php') {
+        header('Location: painel_garcom.php');
+        exit;
+    } elseif ($tipo == 'cliente' && $current_file == 'login.php') {
+        header('Location: cliente/index.php');
+        exit;
+    }
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -58,7 +79,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $_SESSION['utilizador_email'] = $usuario['email'];
                     $_SESSION['utilizador_tipo'] = $usuario['tipo'];
                     
-                    // Redirecionar baseado no tipo
                     redirecionarPorTipo($usuario['tipo']);
                     exit;
                 }
@@ -76,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Restaurante Conect</title>
+    <title>Login - FOODNET</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -97,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             max-width: 450px;
         }
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: white;
             padding: 30px;
             text-align: center;
@@ -117,7 +137,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .btn-submit {
             width: 100%;
             padding: 14px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: white;
             border: none;
             border-radius: 8px;
@@ -150,12 +170,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div class="container">
         <div class="header">
-            <h1>Restaurante Conect</h1>
+            <h1>FOODNET</h1>
             <p>Faça login para continuar</p>
         </div>
         
         <div class="form-container">
-            
             <?php if ($erro): ?>
                 <div class="error-message">❌ <?php echo htmlspecialchars($erro); ?></div>
             <?php endif; ?>
