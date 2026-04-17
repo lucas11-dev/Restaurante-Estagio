@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <?php
+=======
+﻿<?php
+>>>>>>> a5598ee33df2db43f75f8f6e777ac6881e159abc
 require_once __DIR__ . '/../includes/admin.php';
 ensure_admin_logged_in();
 
@@ -144,4 +148,8 @@ $recentOrders = $db->query(
         <a href="index.php" class="back-link">← Voltar ao painel</a>
     </main>
 </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> a5598ee33df2db43f75f8f6e777ac6881e159abc
