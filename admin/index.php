@@ -5,7 +5,7 @@ ensure_admin_logged_in();
 
 $db = get_db();
 
-// Garantir que o usuário é admin (verificação extra)
+
 $stmt = $db->prepare("SELECT tipo FROM utilizador WHERE id = :id");
 $stmt->execute([':id' => $_SESSION['utilizador_id']]);
 $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
